@@ -19,7 +19,7 @@ double average(int grades[], int count)
 }
 
 // Lowest
-double lowest(int grades[], int count)
+int lowest(int grades[], int count)
 {
     double lowest = grades[0];
     for (int i = 0; i < count; i++)
@@ -31,7 +31,7 @@ double lowest(int grades[], int count)
 }
 
 // Highest
-double highest(int grades[], int count)
+int highest(int grades[], int count)
 {
     double highest = grades[0];
     for (int i = 0; i < count; i++)
