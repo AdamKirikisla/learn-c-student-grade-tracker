@@ -1,4 +1,4 @@
-// Statistic Methods
+#include "stats.h"
 
 // Static sum
 static double sum(int grades[], int count)
