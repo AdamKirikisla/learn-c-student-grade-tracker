@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "stats.h"
+#include "report.h"
 
 int main()
 {
@@ -10,13 +10,23 @@ int main()
     char input[100];
     char extra;
 
+    printf("\n=== Student Grade Tracker ===\n");
+    printf("Please enter %d grades.\n\n", size);
+
     for (int i = 0; i < size; i++)
     {
         printf("Enter grade %d: ", i + 1);
 
         while (1)
         {
-            fgets(input, sizeof(input), stdin);
+            // fgets returns NULL if input runs out (e.g. Ctrl+D or piped input ends).
+            // Without this check, the old leftover text in `input` would get re-read
+            // forever, causing repeated/stuck grades or an infinite loop.
+            if (fgets(input, sizeof(input), stdin) == NULL)
+            {
+                printf("\nInput ended unexpectedly. Exiting.\n");
+                return 1;
+            }
 
             // Look inside input. Try to find an integer (%d) and a character (%c). Put the integer into grades[i]
             // and the character into extra. The %d is first so if only int, then its equal to 1.
@@ -28,9 +38,7 @@ int main()
         }
     }
 
-    printf("Average: %.2lf\n", average(grades, size));
-    printf("Lowest: %d\n", lowest(grades, size));
-    printf("Highest: %d\n", highest(grades, size));
+    print_report(grades, size);
 
     return 0;
 }
