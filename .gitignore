@@ -53,3 +53,8 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# Project-specific: compiled binary and generated output
+main
+stats
+report
